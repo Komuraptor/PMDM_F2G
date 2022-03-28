@@ -1,0 +1,63 @@
+<ion-content scroll-y="false">
+  <img src="assets/img/logo.png">
+  
+  <ion-slide>
+    <div class="contaier-login">
+        <form
+            #formulario="ngForm"
+            (ngSubmit)="submit()"
+        >
+            <h1>Iniciar Sesión</h1>
+
+            <ion-list>
+                <ion-item>
+                    <ion-icon name="mail-outline"></ion-icon>
+
+                    <ion-input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                        [(ngModel)]="usuario.email"
+                    ></ion-input>
+                </ion-item>
+
+                <br>
+
+                <ion-item>
+                    <ion-icon name="lock-closed"></ion-icon>
+
+                    <ion-input
+                        name="password"
+                        type="password"
+                        placeholder="Contraseña"
+                        [(ngModel)]="usuario.password"
+                    ></ion-input>
+                </ion-item>
+            </ion-list>
+
+            <ion-row>
+                <ion-col>
+                    <ion-button
+                        type="submit"
+                        fill="solid"
+                        expand="full"
+                        [disabled]="formulario.invalid"
+                    >Entrar</ion-button>
+
+                    <ion-button
+                        fill="solid"
+                        expand="full"
+                        color="danger"
+                        routerLink='/register'
+                    >Registrate</ion-button>
+                </ion-col>
+            </ion-row>
+        </form>
+    </div>
+  </ion-slide>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">FreeToGame© 2022</ion-title>
+itle>

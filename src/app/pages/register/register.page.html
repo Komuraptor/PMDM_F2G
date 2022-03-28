@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-title class="ion-text-center">Registro</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="no-scroll">
+  <form
+    #formulario="ngForm"
+    
+  >
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre</ion-label>
+
+      <ion-input
+        type="text"
+        name="firstname"
+        
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Apellidos</ion-label>
+
+      <ion-input
+        type="text"
+        name="secondname"
+        
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+
+      <ion-input
+        type="text"
+        name="email"
+        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+        
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña</ion-label>
+
+      <ion-input
+        type="password"
+        name="password"
+        
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Confirma Contraseña</ion-label>
+
+      <ion-input
+        type="password"
+        name="c_password"
+        
+        required
+      ></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button
+          type="submit"
+          color="danger"
+          [routerLink]="['/']"
+          routerLinkActive="router-link-active"
+          expand="block"
+          [disabled]="formulario.invalid"
+        >Sign Up</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

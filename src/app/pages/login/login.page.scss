@@ -1,0 +1,25 @@
+.contaier-login {
+    width: 90%;
+    padding: 10px;
+    margin: auto;
+    display: block;
+}
+
+img {
+    margin: auto;
+    display: block;
+    margin-top: 10%;
+}
+
+ion-content {
+    height: 100%; 
+    --overflow: hidden;
+}
+
+ion-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute !important;
+    top: 0px !important;
+}
+
