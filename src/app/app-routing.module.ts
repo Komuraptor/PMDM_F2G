@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
-    redirectTo: "/tabs/tab1",
+    redirectTo: "/tabs/usuarios",
     pathMatch: "full",
   },
   {
@@ -25,8 +25,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
-    path: 'tab1',
-    loadChildren: () => import('./pages/tab1/tab1.module').then( m => m.Tab1PageModule)
+    path: 'usuarios',
+    loadChildren: () => import('./pages/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
   },
   {
     path: 'tab2',
@@ -36,6 +36,8 @@ const routes: Routes = [
     path: 'tab3',
     loadChildren: () => import('./pages/tab3/tab3.module').then( m => m.Tab3PageModule)
   },
+  
+
 ];
 @NgModule({
   imports: [

@@ -10,7 +10,7 @@
 <ion-content class="no-scroll">
   <form
     #formulario="ngForm"
-    
+    (ngSubmit)="submit(usuario)"
   >
     <ion-item lines="full">
       <ion-label position="floating">Nombre</ion-label>
@@ -18,8 +18,8 @@
       <ion-input
         type="text"
         name="firstname"
-        
-        required
+        [(ngModel)]="usuario.firstname"
+        required="required"
       ></ion-input>
     </ion-item>
 
@@ -29,8 +29,8 @@
       <ion-input
         type="text"
         name="secondname"
-        
-        required
+        [(ngModel)]="usuario.secondname"
+        required="required"
       ></ion-input>
     </ion-item>
 
@@ -41,8 +41,8 @@
         type="text"
         name="email"
         pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
-        
-        required
+        [(ngModel)]="usuario.email"
+        required="required"
       ></ion-input>
     </ion-item>
 
@@ -52,8 +52,8 @@
       <ion-input
         type="password"
         name="password"
-        
-        required
+        [(ngModel)]="usuario.password"
+        required="required"
       ></ion-input>
     </ion-item>
 
@@ -63,8 +63,8 @@
       <ion-input
         type="password"
         name="c_password"
-        
-        required
+        [(ngModel)]="usuario.c_password"
+        required="required"
       ></ion-input>
     </ion-item>
 
