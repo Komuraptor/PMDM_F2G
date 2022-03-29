@@ -73,6 +73,6 @@ export class UsuariosPage implements OnInit {
     }, 500);
     this.router.navigateByUrl('/tabs/usuarios')
     this.ngOnInit();
-    this.router.navigateByUrl('/tabs/usuarios')
+    this.router.navigateByUrl('/tabs/usuarios') 
   }
 }
