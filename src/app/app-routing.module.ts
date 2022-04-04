@@ -13,6 +13,11 @@ const routes: Routes = [
     pathMatch: "full",
   },
   {
+    path: 'tabs-users',
+    redirectTo: "/tabs-users/juegos",
+    pathMatch: "full",
+  },
+  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
@@ -36,6 +41,15 @@ const routes: Routes = [
     path: 'tab3',
     loadChildren: () => import('./pages/tab3/tab3.module').then( m => m.Tab3PageModule)
   },
+  {
+    path: 'juegos',
+    loadChildren: () => import('./pages/juegos/juegos.module').then( m => m.JuegosPageModule)
+  },
+  {
+    path: 'plataformas',
+    loadChildren: () => import('./pages/plataformas/plataformas.module').then( m => m.PlataformasPageModule)
+  },
+
   
 
 ];

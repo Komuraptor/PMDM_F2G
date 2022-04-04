@@ -41,7 +41,7 @@ export class DataService {
         if (tipo === "a") {
             this.router.navigateByUrl('/tabs')
         } else {
-            // this.router.navigateByUrl('/')
+            this.router.navigateByUrl('/tabs-users')
         }
     }
 
