@@ -23,6 +23,8 @@ export class DataService {
 
     //1ª Entrega
 
+    //yinicen207@xasems.com
+
     login(usuario) {
         return new Promise((resolve) => {
         this.http
@@ -125,6 +127,7 @@ export class DataService {
     //2ª Entrega
 
     getJuegos() {
+
       return new Promise<any>((resolve) => {
         this.http.get(this.apiUrlGames + "/games").subscribe((data) => {
           resolve(data);
