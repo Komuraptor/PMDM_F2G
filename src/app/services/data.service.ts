@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 
 export class DataService {
     apiUrl = "http://semillero.allsites.es/public/api";
+    apiUrlGames = "https://www.freetogame.com/api";
     usuarios: [];
 
     token: any;
@@ -19,6 +20,8 @@ export class DataService {
         public nav: NavController, 
         public router: Router
     ) { }
+
+    //1ª Entrega
 
     login(usuario) {
         return new Promise((resolve) => {
@@ -117,6 +120,20 @@ export class DataService {
           this.http.post(this.apiUrl + '/user/deleted/' + user_id, { user_id: usuario.id
           }, httpOptions).subscribe((data) => { resolve(data); })
         })
+    }
+
+    //2ª Entrega
+
+    getJuegos() {
+      return new Promise<any>((resolve) => {
+        this.http.get(this.apiUrlGames + "/games").subscribe((data) => {
+          resolve(data);
+          console.log(data);
+          (err) => {
+            console.log(err);
+          };
+        });
+      });
     }
 
     

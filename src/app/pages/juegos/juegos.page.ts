@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
+
+interface juegosService {
+    title: string;
+    thumbnail: string;
+    short_description: string;
+    developer: string;
+    platform: string;
+}
 
 @Component({
   selector: 'app-juegos',
@@ -7,9 +16,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JuegosPage implements OnInit {
 
-  constructor() { }
+  juegos: any[] = [];
 
+  constructor(
+    private dataService: DataService,
+  ) { }
+
+  
   ngOnInit() {
+    this.dataService.getJuegos().then((data) => {
+      this.juegos = data.data;
+    })
   }
 
 }
