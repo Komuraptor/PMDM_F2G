@@ -9,8 +9,9 @@ import { Router } from "@angular/router";
 
 export class DataService {
     apiUrl = "http://semillero.allsites.es/public/api";
-    apiUrlGames = "https://www.freetogame.com/api";
+    apiUrlGames = "https://free-to-play-games-database.p.rapidapi.com/api";
     usuarios: [];
+    juegos: [];
 
     token: any;
     tipo: String;
@@ -127,9 +128,15 @@ export class DataService {
     //2ª Entrega
 
     getJuegos() {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+          'X-RapidAPI-Key': '454197b472msh7b60145a52a2864p11e7f3jsn7a703c54c7ea'
+        }),
+      };
 
       return new Promise<any>((resolve) => {
-        this.http.get(this.apiUrlGames + "/games").subscribe((data) => {
+        this.http.get(this.apiUrlGames + "/games", httpOptions).subscribe((data) => {
           resolve(data);
           console.log(data);
           (err) => {
@@ -138,6 +145,4 @@ export class DataService {
         });
       });
     }
-
-    
 }

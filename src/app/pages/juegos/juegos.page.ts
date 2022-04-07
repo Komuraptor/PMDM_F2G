@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 
-interface juegosService {
-    title: string;
-    thumbnail: string;
-    short_description: string;
-    developer: string;
-    platform: string;
-}
+// interface juegosService {
+//     title: string;
+//     thumbnail: string;
+//     short_description: string;
+//     developer: string;
+//     platform: string;
+// }
 
 @Component({
   selector: 'app-juegos',
@@ -25,7 +25,7 @@ export class JuegosPage implements OnInit {
   
   ngOnInit() {
     this.dataService.getJuegos().then((data) => {
-      this.juegos = data.data;
+      this.juegos = data;
     })
   }
 

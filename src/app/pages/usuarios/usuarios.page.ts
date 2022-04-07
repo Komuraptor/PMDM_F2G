@@ -29,6 +29,7 @@ export class UsuariosPage implements OnInit {
   ngOnInit() {
     this.dataService.getUsuarios().then((data) => {
       this.usuarios = data.data;
+      console.log(this.usuarios)
     })
   }
 
