@@ -1,9 +1,27 @@
 <ion-header>
-  <!-- <ion-toolbar>
-    <ion-title class="ion-text-center">Plataformas</ion-title>
-  </ion-toolbar> -->
+  <ion-segment color="secondary" value="pc" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="pc">
+      <ion-label>PC</ion-label>
+      <ion-icon name="tv-outline"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="browser">
+      <ion-label>Navegador</ion-label>
+      <ion-icon name="logo-chrome"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <ion-content>
-
+  <ion-list #lista>
+    <div *ngFor="let juego of juegos">
+      <ion-card class="card">
+        <img class="img" src="{{ juego.thumbnail }}" />
+        <ion-card-header>
+          <ion-card-subtitle> {{ juego.developer }}, {{ juego.platform }} </ion-card-subtitle>
+          <ion-card-title> {{ juego.title }} </ion-card-title>
+        </ion-card-header>     
+        <ion-card-content> {{ juego.short_description }} </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-list>
 </ion-content>

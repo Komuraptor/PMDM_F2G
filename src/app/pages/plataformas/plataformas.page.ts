@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-plataformas',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlataformasPage implements OnInit {
 
-  constructor() { }
+  juegos: any[] = [];
+  plataforma = "pc";
+
+  constructor(
+    private dataService: DataService,
+  ) { }
 
   ngOnInit() {
+    this.dataService.getJuegosPlataforma(this.plataforma).then((data) => {
+      this.juegos = data;
+    })
+  }
+
+  segmentChanged(ev: any) {
+    this.plataforma = ev.detail.value
+    this.dataService.getJuegosPlataforma(this.plataforma).then((data) => {
+      this.juegos = data;
+    })
   }
 
 }

@@ -1,14 +1,8 @@
-<ion-header>
-  <!-- <ion-toolbar>
-    <ion-title class="ion-text-center">Juegos</ion-title>
-  </ion-toolbar> -->
-</ion-header>
-
 <ion-content>
   <ion-list #lista>
     <div *ngFor="let juego of juegos">
-      <ion-card>
-        <img src="{{ juego.thumbnail }}" />
+      <ion-card class="card">
+        <img class="img" src="{{ juego.thumbnail }}" />
         <ion-card-header>
           <ion-card-subtitle> {{ juego.developer }}, {{ juego.platform }} </ion-card-subtitle>
           <ion-card-title> {{ juego.title }} </ion-card-title>
@@ -17,4 +11,11 @@
       </ion-card>
     </div>
   </ion-list>
-</ion-content>
+
+  <!-- <ion-infinite-scroll threshold="1000px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+</ion-content> 

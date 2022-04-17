@@ -3,6 +3,14 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { NavController } from "@ionic/angular";
 import { Router } from "@angular/router";
 
+interface juegosService {
+  title: string;
+  thumbnail: string;
+  short_description: string;
+  developer: string;
+  platform: string;
+}
+
 @Injectable({
     providedIn: "root",
   })
@@ -10,11 +18,11 @@ import { Router } from "@angular/router";
 export class DataService {
     apiUrl = "http://semillero.allsites.es/public/api";
     apiUrlGames = "https://free-to-play-games-database.p.rapidapi.com/api";
-    usuarios: [];
-    juegos: [];
+    
 
     token: any;
     tipo: String;
+    plataforma: String;
 
     constructor(
         private http: HttpClient, 
@@ -28,12 +36,10 @@ export class DataService {
 
     login(usuario) {
         return new Promise((resolve) => {
-        this.http
-            .post<any>(this.apiUrl + "/login", {
+        this.http.post<any>(this.apiUrl + "/login", {
                 email: usuario.email,
                 password: usuario.password,
-            })
-            .subscribe((data) => {
+            }).subscribe((data) => {
                 this.token = data.data.token;
                 this.tipo = data.data.type;
                 resolve(data);
@@ -138,7 +144,24 @@ export class DataService {
       return new Promise<any>((resolve) => {
         this.http.get(this.apiUrlGames + "/games", httpOptions).subscribe((data) => {
           resolve(data);
-          console.log(data);
+          (err) => {
+            console.log(err);
+          };
+        });
+      });
+    }
+
+    getJuegosPlataforma(plataforma: String) {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com',
+          'X-RapidAPI-Key': '454197b472msh7b60145a52a2864p11e7f3jsn7a703c54c7ea'
+        }),
+      };
+
+      return new Promise<any>((resolve) => {
+        this.http.get(this.apiUrlGames + "/games?platform=" + plataforma, httpOptions).subscribe((data) => {
+          resolve(data);
           (err) => {
             console.log(err);
           };
