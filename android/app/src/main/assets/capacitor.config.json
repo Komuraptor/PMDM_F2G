@@ -1,0 +1,6 @@
+{
+	"appId": "com.example.app",
+	"appName": "PMDM_Adan",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
