@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { JuegosPageRoutingModule } from './juegos-routing.module';
 
 import { JuegosPage } from './juegos.page';
+import { LoginPageModule } from '../login/login.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    JuegosPageRoutingModule
+    JuegosPageRoutingModule,
+    LoginPageModule
   ],
   declarations: [JuegosPage]
 })

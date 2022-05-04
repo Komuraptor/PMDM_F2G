@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { Storage } from '@ionic/storage-angular';
+// import { Storage } from '@ionic/storage-angular';
+// import { LoginPage } from '../login/login.page';
 
 @Component({
   selector: 'app-juegos',
@@ -11,19 +12,24 @@ import { Storage } from '@ionic/storage-angular';
 export class JuegosPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
+  // https://www.freakyjolly.com/ionic-offline-storage-using-sqlite-tutorial/
+
   juegos: any[]
+  // email: String
   juegosInfinite: any[]
   fav=[]
 
   constructor(
     private dataService: DataService,
-    private storage: Storage
+    private storage: Storage,
+    // private login: LoginPage
   ) { }
   
   ngOnInit() {
     
     this.dataService.getJuegos().then((data) => {
       this.juegos = data;
+      // this.email = this.login.usuario.email
       for (let index = 0; index < this.juegos.length; index++) {
         this.fav.push({
           id: this.juegos[index].id,
@@ -53,6 +59,10 @@ export class JuegosPage implements OnInit {
     else if(this.fav[id-1].fav == true) {
       return true
     }
+  }
+
+  getEmail(email) {
+
   }
 
   // loadData(event) {
