@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { LoginPage } from '../login/login.page';
+// import { LoginPage } from '../login/login.page';
 
 @Component({
   selector: 'app-juegos',
@@ -12,8 +12,6 @@ import { LoginPage } from '../login/login.page';
 export class JuegosPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
-  // https://www.freakyjolly.com/ionic-offline-storage-using-sqlite-tutorial/
-
   juegos: any[]
   email: string
   juegosInfinite: any[]
@@ -22,14 +20,14 @@ export class JuegosPage implements OnInit {
   constructor(
     private dataService: DataService,
     private storage: Storage,
-    private login: LoginPage
+    // private login: LoginPage
   ) { }
   
   ngOnInit() {
     
     this.dataService.getJuegos().then((data) => {
       this.juegos = data;
-      this.email = this.login.usuario.email
+      // this.email = this.login.usuario.email
       for (let index = 0; index < this.juegos.length; index++) {
         this.fav.push({
           id: this.juegos[index].id,
@@ -37,19 +35,19 @@ export class JuegosPage implements OnInit {
         })
       }
 
-      this.storage.get(this.email).then((val) => {
-        console.log(val)
-      }).catch((error) => {
-        this.email = this.login.usuario.email
-        for (let index = 0; index < this.juegos.length; index++) {
-          this.fav.push({
-            id: this.juegos[index].id,
-            fav: false
-          })
-        }
-        this.storage.set(this.email, this.fav)
-      })
-      this.fav[3].fav = true
+      // this.storage.get(this.email).then((val) => {
+      //   console.log(val)
+      // }).catch((error) => {
+      //   // this.email = this.login.usuario.email
+      //   for (let index = 0; index < this.juegos.length; index++) {
+      //     this.fav.push({
+      //       id: this.juegos[index].id,
+      //       fav: false
+      //     })
+      //   }
+      //   this.storage.set(this.email, this.fav)
+      // })
+      // this.fav[3].fav = true
       
     })
     
@@ -73,29 +71,4 @@ export class JuegosPage implements OnInit {
       return true
     }
   }
-
-  // loadData(event) {
-  //   console.log(this.juegos)
-  //   setTimeout(() => {
-  //     console.log('Done');
-  //     event.target.complete();
-
-  //     if (this.juegos.length === 1000) {
-  //       event.target.disabled = true;
-  //     }
-  //   }, 500);
-  //   event.target.complete();
-  // }
-
-  // addInfinite() {
-  //   for (let index = 0; index < 5; index++) {
-  //     this.juegosInfinite.push({
-  //       title: this.juegos[index].title,
-  //       thumbnail: this.juegos[index].thumbnail,
-  //       developer: this.juegos[index].developer,
-  //       platform: this.juegos[index].platform,
-  //       short_description: this.juegos[index].short_description
-  //     });
-  //   }
-  // }
 }
