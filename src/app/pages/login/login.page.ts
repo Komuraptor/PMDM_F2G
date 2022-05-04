@@ -23,11 +23,7 @@ export class LoginPage implements OnInit {
   }
 
   submit() {
-    this.storage.get(this.usuario.email).then((val) => {
-      console.log(val)
-    }).catch((error) => {
-      // this.storage.set(this.usuario.email)
-    })
+    this.storage.create()
     this.dataService.login(this.usuario);
   }
 }
