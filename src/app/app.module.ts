@@ -9,9 +9,6 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
-import { IonicStorageModule } from '@ionic/storage-angular';
-import { LoginPageModule } from './pages/login/login.module';
-
 
 
 @NgModule({
@@ -21,8 +18,7 @@ import { LoginPageModule } from './pages/login/login.module';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
-    HttpClientModule, 
-    IonicStorageModule.forRoot()
+    HttpClientModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

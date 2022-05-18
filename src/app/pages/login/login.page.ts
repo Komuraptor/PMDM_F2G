@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
-import { Storage } from '@ionic/storage-angular';
 
 
 @Component({
@@ -10,7 +9,7 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private dataService: DataService, private storage: Storage) {
+  constructor(private dataService: DataService) {
     
   }
 
@@ -23,7 +22,6 @@ export class LoginPage implements OnInit {
   }
 
   submit() {
-    this.storage.create()
     this.dataService.login(this.usuario);
   }
 }

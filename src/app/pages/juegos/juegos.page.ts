@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { Storage } from '@ionic/storage-angular';
-import { LoginPage } from '../login/login.page';
+import { CarroPage } from '../carro/carro.page';
+import { ModalController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-juegos',
@@ -17,59 +18,45 @@ export class JuegosPage implements OnInit {
   juegos: any[]
   email: string
   juegosInfinite: any[]
-  fav=[]
+  carrito=[]
 
   constructor(
     private dataService: DataService,
-    private storage: Storage,
-    private login: LoginPage
+    private modalCtrl: ModalController
   ) { }
   
   ngOnInit() {
     
     this.dataService.getJuegos().then((data) => {
       this.juegos = data;
-      this.email = this.login.usuario.email
       for (let index = 0; index < this.juegos.length; index++) {
-        this.fav.push({
+        this.carrito.push({
           id: this.juegos[index].id,
-          fav: false
+          added: false
         })
       }
-
-      this.storage.get(this.email).then((val) => {
-        console.log(val)
-      }).catch((error) => {
-        this.email = this.login.usuario.email
-        for (let index = 0; index < this.juegos.length; index++) {
-          this.fav.push({
-            id: this.juegos[index].id,
-            fav: false
-          })
-        }
-        this.storage.set(this.email, this.fav)
-      })
-      this.fav[3].fav = true
       
     })
     
   }
 
-  Favorite(id) {
-    if(this.fav[id-1].fav == false) {
-      this.fav[id-1].fav = true
+  AddJuego(id) {
+    var juegoId = id -1
+    if(this.carrito[juegoId].added == false) {
+      this.carrito[juegoId].added = true
     }
-    else if(this.fav[id-1].fav == true) {
-      this.fav[id-1].fav = false
+    else if(this.carrito[juegoId].added == true) {
+      this.carrito[juegoId].added = false
     }
-    console.log(this.fav)
+    console.log(this.carrito)
   }
 
-  checkFav(id) {
-    if(this.fav[id-1].fav == false) {
+  checkStatus(id) {
+    var juegoId = id -1
+    if(this.carrito[juegoId].added == false) {
       return false
     }
-    else if(this.fav[id-1].fav == true) {
+    else if(this.carrito[juegoId].added == true) {
       return true
     }
   }
@@ -98,4 +85,17 @@ export class JuegosPage implements OnInit {
   //     });
   //   }
   // }
+
+  async pedir() {
+    const modal = await this.modalCtrl.create({
+      component: CarroPage,
+    });
+    await modal.present();
+    const { data } = await modal.onDidDismiss();
+    (data) => {
+      if ((data !== undefined)) {
+        this.carrito = data.data;
+      }
+    };
+  }
 }

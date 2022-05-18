@@ -6,10 +6,12 @@
         <ion-card-header>
           <ion-card-subtitle> {{ juego.developer }}, {{ juego.platform }} </ion-card-subtitle>
           <ion-card-title> {{ juego.title }} </ion-card-title>
-          <button  (click)="Favorite(juego.id)">
-            <ion-icon *ngIf="checkFav(juego.id) === true" name="heart"></ion-icon>
-            <ion-icon *ngIf="checkFav(juego.id) === false" name="heart-outline"></ion-icon>
-          </button>
+          <div class="ion-text-end">
+            <button (click)="AddJuego(juego.id)" size="large">
+              <ion-icon *ngIf="checkStatus(juego.id) === true" name="remove-outline"></ion-icon>
+              <ion-icon *ngIf="checkStatus(juego.id) === false" name="add-outline"></ion-icon>
+            </button>
+          </div>
         </ion-card-header>     
         <ion-card-content> {{ juego.short_description }} </ion-card-content>
       </ion-card>
