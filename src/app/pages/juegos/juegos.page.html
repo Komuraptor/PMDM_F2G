@@ -8,8 +8,8 @@
           <ion-card-title> {{ juego.title }} </ion-card-title>
           <div class="ion-text-end">
             <button (click)="AddJuego(juego.id)" size="large">
-              <ion-icon *ngIf="checkStatus(juego.id) === true" name="remove-outline"></ion-icon>
-              <ion-icon *ngIf="checkStatus(juego.id) === false" name="add-outline"></ion-icon>
+              <ion-icon *ngIf="checkStatus(juego.id) == true" name="remove-outline"></ion-icon>
+              <ion-icon *ngIf="checkStatus(juego.id) == false" name="add-outline"></ion-icon>
             </button>
           </div>
         </ion-card-header>     
@@ -18,6 +18,12 @@
     </div>
   </ion-list>
 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="pedir()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
   <!-- <ion-infinite-scroll threshold="1000px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
