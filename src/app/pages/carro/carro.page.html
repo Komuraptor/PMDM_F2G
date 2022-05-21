@@ -1,11 +1,39 @@
 <ion-header class="ion-no-border">
   <ion-toolbar color="primary">
-    <ion-title class="ion-text-center">carro</ion-title>
+    <ion-title class="ion-text-center"> Pedido </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div *ngIf="carrito == false">
+    <ion-label>No hay nada en tu carrito</ion-label>
+  </div>
+  <div>
+    <ion-list #lista>
+      <div *ngFor="let juego of carrito">
+        <ion-item> 
+          <ion-label> {{ juego.nombre }} </ion-label>
+          <ion-note slot="end"> {{ juego.desarrollador }} </ion-note>
+        </ion-item>
+      </div>
+    </ion-list>
 
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button color="primary">
+        <ion-icon name="settings"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button (click)="vaciar()" color="danger">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+      <ion-fab-list side="start">
+        <ion-fab-button (click)="crearPdf()" color="light">
+          <ion-icon name="document-text-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
 </ion-content>
 
 <ion-footer>
