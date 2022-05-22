@@ -4,7 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    // redirectTo: '/login',
+    redirectTo: '/tabs-users/juegos',
     pathMatch: 'full',
   },
   {
@@ -52,7 +53,8 @@ const routes: Routes = [
   {
     path: 'plataformas',
     loadChildren: () => import('./pages/plataformas/plataformas.module').then( m => m.PlataformasPageModule)
-  },  {
+  },
+  {
     path: 'carro',
     loadChildren: () => import('./pages/carro/carro.module').then( m => m.CarroPageModule)
   },

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { Platform  } from '@ionic/angular';
 import { CarroPage } from '../carro/carro.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
@@ -10,6 +10,8 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs
 import { File } from '@ionic-native/file/ngx'
 import { FileOpener } from '@ionic-native/file-opener/ngx'
 import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx'
+
+declare let cordova: any;
 
 @Component({
   selector: 'app-juegos',
@@ -38,7 +40,8 @@ export class JuegosPage implements OnInit {
     private plt: Platform,
     private file: File,
     private fileOpener: FileOpener,
-    private emailComposer: EmailComposer
+    private emailComposer: EmailComposer,
+    private alertCtrl: AlertController
   ) {
     this.carrito = []
   }
@@ -49,6 +52,7 @@ export class JuegosPage implements OnInit {
       this.carrito = []
     })
     this.email = this.dataService.getEmail()
+    console.log(this.file.dataDirectory)
     
   }
 
@@ -117,6 +121,7 @@ export class JuegosPage implements OnInit {
       ]
     }
     this.pdf = pdfMake.createPdf(docDef)
+    this.carrito = []
     this.downloadPdf()
   }
 
@@ -124,23 +129,44 @@ export class JuegosPage implements OnInit {
     if (this.plt.is('cordova')) {
       this.pdf.getBuffer((buffer) => {
           var blob = new Blob([buffer], { type: 'application/pdf' })
-          this.file.writeFile(this.file.dataDirectory, 'pedido.pdf', blob, {replace: true}).then(fileEntry => {
-            this.fileOpener.open(this.file.dataDirectory + 'pedido.pdf', 'application/pdf')
+          this.file.writeFile(this.file.dataDirectory, 'file.pdf', blob, {replace: true}).then(fileEntry => {
+            this.fileOpener.open(this.file.dataDirectory + 'file.pdf', 'application/pdf')
           })
         }
       )
+
+      // this.pdf.getBlob(buffer => {
+      //   this.file.resolveDirectoryUrl(this.file.externalRootDirectory)
+      //     .then(dirEntry => {
+      //       this.file.getFile(dirEntry, 'pedido.pdf', {create: true})
+      //         .then(fileEntry => {
+      //           fileEntry.createWriter(writer => {
+      //             writer.onwrite = () => {
+      //               this.fileOpener.open(fileEntry.toURL(), 'application/pdf')
+      //                 .then(res => { }).catch(err => {
+      //                   const alert = this.alertCtrl.create({ message: err.message, buttons: ['Ok']}).then(alert => alert.present())
+      //                 })
+      //             }
+      //             writer.write(buffer)
+      //           })
+      //         }).catch(err => {
+      //           const alert = this.alertCtrl.create({ message: err.message, buttons: ['Ok']}).then(alert => alert.present())
+      //         })
+      //     }).catch(err => {
+      //       const alert = this.alertCtrl.create({ message: err.message, buttons: ['Ok']}).then(alert => alert.present())
+      //     })
+      // })
     } else {
       this.pdf.download()
     }
-    this.carrito = []
     this.emailPdf()
   }
 
   emailPdf() {
     var email = {
-      to: 'komuraptor@gmail.com',
+      to: this.email,
       attachments: [
-        String(this.fileOpener.open(this.file.dataDirectory + 'pedido.pdf', 'application/pdf'))
+        String(this.fileOpener.open(this.file.dataDirectory + 'file.pdf', 'application/pdf'))
       ],
       subject: 'Pedido juegos',
       body: 'Factura del pedido realizado por el usuario del correo :'+this.email+' en Free to Game.',
