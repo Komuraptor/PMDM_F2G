@@ -12,13 +12,9 @@ const routes: Routes = [
         loadChildren: () => import('../usuarios/usuarios.module').then(m => m.UsuariosPageModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
-      },
-      {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
-      },
+        path: 'grafica',
+        loadChildren: () => import('../grafica/grafica.module').then(m => m.GraficaPageModule)
+      }
     ],
   },
 ];

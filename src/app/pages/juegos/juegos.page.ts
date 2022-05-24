@@ -32,6 +32,9 @@ export class JuegosPage implements OnInit {
   pdf = null
   email: string
 
+  generosSort = []
+  generos = []
+
   constructor(
     private dataService: DataService,
     private modalCtrl: ModalController,
@@ -46,10 +49,23 @@ export class JuegosPage implements OnInit {
   ngOnInit() {
     this.dataService.getJuegos().then((data) => {
       this.juegos = data;
+      console.log(this.juegos)
+      for (let {genre} of this.juegos ) {
+        this.generosSort[genre] = {
+          genre,
+          count: this.generosSort[genre] ? this.generosSort[genre].count + 1 : 1
+        }
+        this.generos[genre] = genre
+      }
+      console.log(this.generos) 
+      console.log(this.generosSort)
       this.carrito = []
     })
     this.email = this.dataService.getEmail()
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
   }
 
   modCarrito(id) {
@@ -69,7 +85,7 @@ export class JuegosPage implements OnInit {
     
     this.carrito.sort((a, b) => a.id - b.id);
 
-    console.log(this.carrito)
+    
   }
 
   checkStatus(id) {

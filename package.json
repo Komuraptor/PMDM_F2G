@@ -26,7 +26,14 @@
     "@ionic-native/file-opener": "^5.36.0",
     "@ionic/angular": "^6.0.0",
     "@ionic/storage-angular": "^3.0.6",
+<<<<<<< Updated upstream
+=======
+    "chart.js": "^3.7.0",
+    "chartjs-plugin-datalabels": "^2.0.0",
+    "cordova-android": "9.1.0",
+>>>>>>> Stashed changes
     "cordova-plugin-email-composer": "^0.10.0",
+    "ng2-charts": "^3.0.8",
     "pdfmake": "^0.2.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",

@@ -13,6 +13,8 @@ import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 
+import { NgChartsModule } from 'ng2-charts';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,6 +23,7 @@ import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
     IonicModule.forRoot(), 
     AppRoutingModule, 
     HttpClientModule,
+    NgChartsModule
   ],
   providers: [
     File,
