@@ -62,10 +62,6 @@ export class JuegosPage implements OnInit {
       this.carrito = []
     })
     this.email = this.dataService.getEmail()
-<<<<<<< Updated upstream
-    
-=======
->>>>>>> Stashed changes
   }
 
   modCarrito(id) {

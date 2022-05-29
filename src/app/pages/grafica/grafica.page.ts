@@ -42,7 +42,9 @@ export class GraficaPage implements OnInit {
       }
     })
 
-    this.update()
+    this.barChartData.datasets[0].data = this.generosCount;
+
+    this.chart?.update();
   }
 
   public barCharOptions: ChartConfiguration['options'] = {
@@ -86,11 +88,9 @@ export class GraficaPage implements OnInit {
     // console.log(event, active);
   }
 
-  public update(): void {
-
+  async generar() {
     this.barChartData.datasets[0].data = this.generosCount;
 
     this.chart?.update();
   }
-
 }
